@@ -16,3 +16,4 @@ C:\Users\tasko\Desktop\FAX\V\6 Semestar\Sistemsko\YouTube_API_Comments_Analyzer\
 C:\Users\tasko\Desktop\FAX\V\6 Semestar\Sistemsko\YouTube_API_Comments_Analyzer\YouTube_API_Comments_Analyzer\YouTube_API_Comments_Analyzer\obj\Debug\net8.0\YouTube_API_Comments_Analyzer.pdb
 C:\Users\tasko\Desktop\FAX\V\6 Semestar\Sistemsko\YouTube_API_Comments_Analyzer\YouTube_API_Comments_Analyzer\YouTube_API_Comments_Analyzer\obj\Debug\net8.0\YouTube_API_Comments_Analyzer.genruntimeconfig.cache
 C:\Users\tasko\Desktop\FAX\V\6 Semestar\Sistemsko\YouTube_API_Comments_Analyzer\YouTube_API_Comments_Analyzer\YouTube_API_Comments_Analyzer\obj\Debug\net8.0\ref\YouTube_API_Comments_Analyzer.dll
+C:\Users\tasko\Desktop\FAX\V\6 Semestar\Sistemsko\YouTube_API_Comments_Analyzer\YouTube_API_Comments_Analyzer\YouTube_API_Comments_Analyzer\obj\Debug\net8.0\YouTube_API_Comments_Analyzer.sourcelink.json

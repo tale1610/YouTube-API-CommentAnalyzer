@@ -7,11 +7,15 @@
       "RelativeMoniker": "D:0:0:{CCF83F21-B37F-4334-9A60-710A9127833F}|YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer.csproj|solutionrelative:youtube_api_comments_analyzer\\requestobserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CCF83F21-B37F-4334-9A60-710A9127833F}|YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer.csproj|c:\\users\\tasko\\desktop\\fax\\v\\6 semestar\\sistemsko\\youtube_api_comments_analyzer\\youtube_api_comments_analyzer\\youtube_api_comments_analyzer\\webserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CCF83F21-B37F-4334-9A60-710A9127833F}|YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer.csproj|C:\\Users\\tasko\\Desktop\\FAX\\V\\6 Semestar\\Sistemsko\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\youtube_api_comments_analyzer\\webserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CCF83F21-B37F-4334-9A60-710A9127833F}|YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer.csproj|solutionrelative:youtube_api_comments_analyzer\\webserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CCF83F21-B37F-4334-9A60-710A9127833F}|YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer.csproj|c:\\users\\tasko\\desktop\\fax\\v\\6 semestar\\sistemsko\\youtube_api_comments_analyzer\\youtube_api_comments_analyzer\\youtube_api_comments_analyzer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CCF83F21-B37F-4334-9A60-710A9127833F}|YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer.csproj|c:\\users\\tasko\\desktop\\fax\\v\\6 semestar\\sistemsko\\youtube_api_comments_analyzer\\youtube_api_comments_analyzer\\youtube_api_comments_analyzer\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCF83F21-B37F-4334-9A60-710A9127833F}|YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer.csproj|solutionrelative:youtube_api_comments_analyzer\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCF83F21-B37F-4334-9A60-710A9127833F}|YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer.csproj|C:\\Users\\tasko\\Desktop\\FAX\\V\\6 Semestar\\Sistemsko\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\youtube_api_comments_analyzer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CCF83F21-B37F-4334-9A60-710A9127833F}|YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer.csproj|solutionrelative:youtube_api_comments_analyzer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,8 +26,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Comment.cs",
+              "DocumentMoniker": "C:\\Users\\tasko\\Desktop\\FAX\\V\\6 Semestar\\Sistemsko\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\Comment.cs",
+              "RelativeDocumentMoniker": "YouTube_API_Comments_Analyzer\\Comment.cs",
+              "ToolTip": "C:\\Users\\tasko\\Desktop\\FAX\\V\\6 Semestar\\Sistemsko\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\Comment.cs",
+              "RelativeToolTip": "YouTube_API_Comments_Analyzer\\Comment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T18:00:52.796Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -32,7 +49,7 @@
               "RelativeDocumentMoniker": "YouTube_API_Comments_Analyzer\\RequestObserver.cs",
               "ToolTip": "C:\\Users\\tasko\\Desktop\\FAX\\V\\6 Semestar\\Sistemsko\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\RequestObserver.cs",
               "RelativeToolTip": "YouTube_API_Comments_Analyzer\\RequestObserver.cs",
-              "ViewState": "AQIAAF0AAAAAAAAAAAAkwGgAAABJAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAAAB0AAABfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-21T17:11:53.818Z",
               "EditorCaption": ""
@@ -45,14 +62,14 @@
               "RelativeDocumentMoniker": "YouTube_API_Comments_Analyzer\\WebServer.cs",
               "ToolTip": "C:\\Users\\tasko\\Desktop\\FAX\\V\\6 Semestar\\Sistemsko\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\WebServer.cs",
               "RelativeToolTip": "YouTube_API_Comments_Analyzer\\WebServer.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAAwCUAAAAoAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACUAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-21T17:09:02.656Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\tasko\\Desktop\\FAX\\V\\6 Semestar\\Sistemsko\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\YouTube_API_Comments_Analyzer\\Program.cs",
               "RelativeDocumentMoniker": "YouTube_API_Comments_Analyzer\\Program.cs",
@@ -60,8 +77,7 @@
               "RelativeToolTip": "YouTube_API_Comments_Analyzer\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T16:46:11.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-21T16:46:11.158Z"
             }
           ]
         }

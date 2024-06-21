@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YouTube_API_Comments_Analyzer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b29ffb529709003b4fdd4dc1e77541e82c1443f")]
 [assembly: System.Reflection.AssemblyProductAttribute("YouTube_API_Comments_Analyzer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YouTube_API_Comments_Analyzer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

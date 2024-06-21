@@ -32,7 +32,9 @@ public class RequestObserver : IObserver<Request>
             {
                 foreach (var comment in comments)
                 {
-                    Console.WriteLine($"{_name}: {comment}");
+                    Console.WriteLine($"{_name}:\n\tAutor: {comment.AuthorDisplayName}: " +
+                                                $"\n\tTekst: {comment.TextDisplay}" +
+                                                $"\n\t(Likes: {comment.LikeCount}, Published at: {comment.PublishedAt})");
                 }
             });
     }
@@ -47,11 +49,10 @@ public class RequestObserver : IObserver<Request>
         Console.WriteLine($"{_name}: All requests have been processed.");
     }
 
-    private IObservable<string> FetchAllCommentsAsync(string videoId)
-    {
-        return Observable.Create<string>(async observer =>
+    private IObservable<Comment> FetchAllCommentsAsync(string videoId)
+{
+        return Observable.Create<Comment>(async observer =>
         {
-            var comments = new List<string>();
             var nextPageToken = string.Empty;
 
             try
@@ -66,8 +67,15 @@ public class RequestObserver : IObserver<Request>
                     var jsonResponse = JObject.Parse(content);
                     foreach (var item in jsonResponse["items"])
                     {
-                        var commentText = (string)item["snippet"]["topLevelComment"]["snippet"]["textDisplay"];
-                        observer.OnNext(commentText);
+                        var snippet = item["snippet"]["topLevelComment"]["snippet"];
+                        var comment = new Comment
+                        {
+                            AuthorDisplayName = (string)snippet["authorDisplayName"],
+                            TextDisplay = (string)snippet["textDisplay"],
+                            LikeCount = (int)snippet["likeCount"],
+                            PublishedAt = (DateTime)snippet["publishedAt"]
+                        };
+                        observer.OnNext(comment);
 
                         // Fetch replies to the comment
                         var commentId = (string)item["snippet"]["topLevelComment"]["id"];
@@ -90,9 +98,9 @@ public class RequestObserver : IObserver<Request>
         });
     }
 
-    private async Task<IEnumerable<string>> FetchRepliesAsync(string parentId)
+    private async Task<IEnumerable<Comment>> FetchRepliesAsync(string parentId)
     {
-        var replies = new List<string>();
+        var replies = new List<Comment>();
         var nextPageToken = string.Empty;
 
         try
@@ -107,8 +115,15 @@ public class RequestObserver : IObserver<Request>
                 var jsonResponse = JObject.Parse(content);
                 foreach (var item in jsonResponse["items"])
                 {
-                    var replyText = (string)item["snippet"]["textDisplay"];
-                    replies.Add(replyText);
+                    var snippet = item["snippet"];
+                    var reply = new Comment
+                    {
+                        AuthorDisplayName = (string)snippet["authorDisplayName"],
+                        TextDisplay = (string)snippet["textDisplay"],
+                        LikeCount = (int)snippet["likeCount"],
+                        PublishedAt = (DateTime)snippet["publishedAt"]
+                    };
+                    replies.Add(reply);
                 }
 
                 nextPageToken = (string)jsonResponse["nextPageToken"];
@@ -122,4 +137,3 @@ public class RequestObserver : IObserver<Request>
         return replies;
     }
 }
-
