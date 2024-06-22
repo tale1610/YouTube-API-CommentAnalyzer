@@ -7,52 +7,59 @@ namespace NReco.NLQuery.Tests
 {
     public class Program
     {
+        private static readonly HttpClient client = new HttpClient();
+
         public static async Task Main(string[] args)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                // Kreiranje liste autora za pretragu
-                List<string> videos = new List<string> { "sJKitE81lTw", "CCfTPU36AJE", "Z7V8S1O0ovc" }; //5,2,24 valjda
+            Console.WriteLine("Klijent pokrenut...");
 
-                // Kreiranje liste taskova za svakog autora
-                List<Task> tasks = new List<Task>();
-                foreach (var video in videos)
+            try
+            {
+                // Primer video ID-jeva za testiranje
+                string[] videoIds = { "sJKitE81lTw", "CCfTPU36AJE", "Z7V8S1O0ovc" };
+
+                // Kreiranje niza Task objekata za svaki GET zahtev
+                var tasks = new Task<string>[videoIds.Length];
+                for (int i = 0; i < videoIds.Length; i++)
                 {
-                    tasks.Add(ProcessVideoAsync(video));
+                    tasks[i] = SendGetRequest(videoIds[i]);
                 }
 
-                // Čekanje da se svi taskovi završe
+                // Čekanje završetka svih Task-ova
                 await Task.WhenAll(tasks);
 
-                Console.WriteLine("Odgovoreno na sve zahteve.");
+                // Ispis rezultata
+                foreach (var task in tasks)
+                {
+                    if (task.IsCompletedSuccessfully)
+                    {
+                        Console.WriteLine($"Response: {task.Result}");
+                    }
+                    else if (task.IsFaulted)
+                    {
+                        Console.WriteLine($"Request error: {task.Exception.Message}");
+                    }
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine($"General error: {e.Message}");
+            }
+
+            Console.WriteLine("Klijent završio sa slanjem zahteva.");
         }
 
-        static async Task ProcessVideoAsync(string video)
+        private static async Task<string> SendGetRequest(string videoId)
         {
-            string serverUrl = $"http://localhost:8080/?author={video}";
-
-            using (HttpClient httpClient = new HttpClient())
+            try
             {
-                try
-                {
-                    HttpResponseMessage response = await httpClient.GetAsync(serverUrl);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseBody = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine($"Odgovor za video: '{video}':");
-                        Console.WriteLine(responseBody);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Greska na serveru za video: '{video}': {response.StatusCode}");
-                    }
-                }
-                catch (HttpRequestException e)
-                {
-                    Console.WriteLine($"HTTP request greska za video: '{video}': {e.Message}");
-                }
+                HttpResponseMessage response = await client.GetAsync($"http://localhost:8080/?videoId={videoId}");
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (HttpRequestException e)
+            {
+                return $"Request error: {e.Message}";
             }
         }
     }

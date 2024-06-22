@@ -11,17 +11,12 @@ public class Program
     {
         var webServer = new WebServer();
 
-        var observer = new RequestObserver("Request Observer");
-
-        // Koristimo TaskPoolScheduler za obradu zahteva na različitim nitima
-        var requestStream = webServer.RequestStream.ObserveOn(TaskPoolScheduler.Default);
-
-        var subscription = requestStream.Subscribe(observer);
-
+        // Pokretanje servera
         await webServer.StartAsync();
 
         Console.ReadLine();
 
-        subscription.Dispose();
+        // Zaustavljanje servera
+        webServer.Stop();
     }
 }
