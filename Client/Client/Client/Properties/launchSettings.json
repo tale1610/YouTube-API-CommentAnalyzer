@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Client": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "PYTHONNET_PYDLL": "C:\\Python312\\python312.dll"
+      }
+    }
+  }
+}
