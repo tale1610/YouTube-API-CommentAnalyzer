@@ -200,7 +200,9 @@ public class WebServer
                     var modelStream = new TokenNameFinderModel(modelFile);
                     var model = new NameFinderME(modelStream);
                     model.clearAdaptiveData();//OVO JE RESILO PROBLEM
+                    
                     var spans = model.find(tokens);
+                    model.clearAdaptiveData();//OVO JE RESILO PROBLEM
 
                     if (spans.Length > 0)
                     {
