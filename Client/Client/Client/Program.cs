@@ -1,9 +1,4 @@
-﻿using NReco.NLQuery.Matchers;
-using NReco.NLQuery.Table;
-using System;
-using Xunit;
-
-namespace NReco.NLQuery.Tests
+﻿namespace NReco.NLQuery.Tests
 {
     public class Program
     {
@@ -15,25 +10,22 @@ namespace NReco.NLQuery.Tests
 
             try
             {
-                // Primer video ID-jeva za testiranje
                 string[] videoIds = { "sJKitE81lTw", "CCfTPU36AJE", "Z7V8S1O0ovc" };
 
-                // Kreiranje niza Task objekata za svaki GET zahtev
                 var tasks = new Task<string>[videoIds.Length];
                 for (int i = 0; i < videoIds.Length; i++)
                 {
                     tasks[i] = SendGetRequest(videoIds[i]);
                 }
 
-                // Čekanje završetka svih Task-ova
                 await Task.WhenAll(tasks);
 
-                // Ispis rezultata
+
                 foreach (var task in tasks)
                 {
                     if (task.IsCompletedSuccessfully)
                     {
-                        Console.WriteLine($"Response: {task.Result}");
+                        Console.WriteLine($"Odgovor sa servera: {task.Result}");
                     }
                     else if (task.IsFaulted)
                     {

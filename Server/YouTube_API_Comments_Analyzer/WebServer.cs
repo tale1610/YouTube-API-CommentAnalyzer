@@ -22,13 +22,12 @@ public class WebServer
         listener.Prefixes.Add("http://localhost:8080/");
     }
 
-    public async Task StartAsync()
+    public void Start()
     {
         listener.Start();
-        Console.WriteLine("Webserver is running... Press enter to exit.");
+        Console.WriteLine("Webserver pokrenut, pritisnite enter za prekid..");
         Run();
     }
-
     public void Stop()
     {
         listener.Stop();
@@ -49,7 +48,7 @@ public class WebServer
                         {
                             try
                             {
-                                //Console.WriteLine($"Handling request: {context.Request.RawUrl}, Thread: {Thread.CurrentThread.ManagedThreadId}");
+                                Console.WriteLine($"Handling request: {context.Request.RawUrl}, Thread: {Thread.CurrentThread.ManagedThreadId}");
                                 observer.OnNext(context);
                             }
                             catch (Exception ex)
@@ -74,27 +73,24 @@ public class WebServer
         HttpListenerRequest request = context.Request;
         HttpListenerResponse response = context.Response;
 
-        Console.WriteLine($"Request: {request.RawUrl}, Thread: {Thread.CurrentThread.ManagedThreadId}");
-
         string videoId = request.QueryString["videoId"];
+
         if (!string.IsNullOrEmpty(videoId))
         {
             var commentService = new CommentService();
             var comments = await commentService.FetchCommentsAsync(videoId);
 
-            // Pretvori HTTP zahtev u Comment objekte
-            List<Comment> commentList = ConvertToComments(comments);
-
             // Slanje komentara ka klijentskoj strani koristeći RequestObserver
-            var observer = new RequestObserver("Comment Observer", response);
-            foreach (var comment in commentList)
+            Console.WriteLine($"Request: {request.RawUrl}, Thread: {Thread.CurrentThread.ManagedThreadId}");
+            var observer = new RequestObserver($"Comment Observer{Thread.CurrentThread.ManagedThreadId}", response);
+            foreach (var comment in comments)
             {
                 observer.OnNext(comment);
             }
         }
         else
         {
-            string responseString = "Invalid video ID";
+            string responseString = $"Ne postoji video za zadati videoId {videoId}";
             byte[] buf = Encoding.UTF8.GetBytes(responseString);
             response.ContentLength64 = buf.Length;
             response.OutputStream.Write(buf, 0, buf.Length);
@@ -102,13 +98,6 @@ public class WebServer
 
         context.Response.OutputStream.Close();
     }
-
-    private List<Comment> ConvertToComments(IEnumerable<Comment> comments)
-    {
-        // Ovde se samo vraća lista komentara bez promene
-        return comments.ToList();
-    }
-
 
     public void Run()
     {

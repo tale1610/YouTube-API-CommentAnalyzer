@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using OpenNLP.Tools.NameFind;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,18 @@ public class RequestObserver : IObserver<Comment>
 
     public void OnNext(Comment comment)
     {
-        string data = $"{name}: Author: {comment.AuthorDisplayName}\n" +
+        //var modelPath = "C:\\Users\\tasko\\Downloads\\ner\\en-ner-";
+        //var nameFinder = new EnglishNameFinder(modelPath);
+        //var sentence = "Mr. & Mrs. Smith is a 2005 American romantic comedy action film.";
+        //// specify which types of entities you want to detect
+        //string[] models = ["date", "location", "money", "organization", "percentage", "person", "time"];
+        //var ner = nameFinder.GetNames(models, sentence);
+        //// ner = Mr. & Mrs. <person>Smith</person> is a <date>2005</date> American romantic comedy action film.
+        //Console.WriteLine(string.Join(",", ner));
+
+        //govno usrano picka mu materina jebem li mu sve u picku
+
+        string data = $"{name}:\nAuthor: {comment.AuthorDisplayName}\n" +
                       $"Text: {comment.TextDisplay}\n" +
                       $"Likes: {comment.LikeCount}\n" +
                       $"Published At: {comment.PublishedAt}\n" +
