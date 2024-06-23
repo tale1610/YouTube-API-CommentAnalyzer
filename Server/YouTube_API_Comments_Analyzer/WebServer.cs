@@ -15,7 +15,6 @@ public class WebServer
 {
     private readonly HttpListener listener = new HttpListener();
     private IDisposable observableSubscription;
-
     public IObservable<HttpListenerContext> RequestStream { get; private set; }
 
     public WebServer()
@@ -46,12 +45,11 @@ public class WebServer
                     try
                     {
                         var context = await listener.GetContextAsync();
-                        //var comment = ConvertToComment(context);
                         ThreadPoolScheduler.Instance.Schedule(() =>
                         {
                             try
                             {
-                                Console.WriteLine($"Handling request: {context.Request.RawUrl}, Thread: {Thread.CurrentThread.ManagedThreadId}");
+                                //Console.WriteLine($"Handling request: {context.Request.RawUrl}, Thread: {Thread.CurrentThread.ManagedThreadId}");
                                 observer.OnNext(context);
                             }
                             catch (Exception ex)
@@ -71,45 +69,12 @@ public class WebServer
         });
     }
 
-    //public async Task HandleRequest(HttpListenerContext context)
-    //{
-    //    HttpListenerRequest request = context.Request;
-    //    HttpListenerResponse response = context.Response;
-
-    //    Console.WriteLine($"Request: {request.RawUrl}, Thread: {Thread.CurrentThread.ManagedThreadId}");
-
-    //    string videoId = request.QueryString["videoId"];
-    //    if (!string.IsNullOrEmpty(videoId))
-    //    {
-    //        var commentService = new CommentService();
-    //        var comments = await commentService.FetchCommentsAsync(videoId);
-
-    //        var sb = new StringBuilder();
-    //        foreach (var comment in comments)
-    //        {
-    //            sb.AppendLine($"Author: {comment.AuthorDisplayName}, Comment: {comment.TextDisplay}, Likes: {comment.LikeCount}, Published At: {comment.PublishedAt}");
-    //        }
-
-    //        string responseString = sb.ToString();
-    //        byte[] buf = Encoding.UTF8.GetBytes(responseString);
-    //        response.ContentLength64 = buf.Length;
-    //        response.OutputStream.Write(buf, 0, buf.Length);
-    //    }
-    //    else
-    //    {
-    //        string responseString = "Invalid video ID";
-    //        byte[] buf = Encoding.UTF8.GetBytes(responseString);
-    //        response.ContentLength64 = buf.Length;
-    //        response.OutputStream.Write(buf, 0, buf.Length);
-    //    }
-
-    //    context.Response.OutputStream.Close();
-    //}
-
     public async Task HandleRequest(HttpListenerContext context)
     {
         HttpListenerRequest request = context.Request;
         HttpListenerResponse response = context.Response;
+
+        Console.WriteLine($"Request: {request.RawUrl}, Thread: {Thread.CurrentThread.ManagedThreadId}");
 
         string videoId = request.QueryString["videoId"];
         if (!string.IsNullOrEmpty(videoId))
@@ -121,16 +86,11 @@ public class WebServer
             List<Comment> commentList = ConvertToComments(comments);
 
             // Slanje komentara ka klijentskoj strani koristeći RequestObserver
-            var observer = new RequestObserver("Comment Observer");
+            var observer = new RequestObserver("Comment Observer", response);
             foreach (var comment in commentList)
             {
                 observer.OnNext(comment);
             }
-
-            string responseString = "Comments sent to client";
-            byte[] buf = Encoding.UTF8.GetBytes(responseString);
-            response.ContentLength64 = buf.Length;
-            response.OutputStream.Write(buf, 0, buf.Length);
         }
         else
         {
@@ -173,9 +133,38 @@ public class WebServer
     }
 }
 
-//public class Request
+
+//public async Task HandleRequest(HttpListenerContext context)
 //{
-//    public Guid Id { get; set; }
-//    public DateTime Timestamp { get; set; }
-//    public string VideoId { get; set; }
+//    HttpListenerRequest request = context.Request;
+//    HttpListenerResponse response = context.Response;
+
+//    Console.WriteLine($"Request: {request.RawUrl}, Thread: {Thread.CurrentThread.ManagedThreadId}");
+
+//    string videoId = request.QueryString["videoId"];
+//    if (!string.IsNullOrEmpty(videoId))
+//    {
+//        var commentService = new CommentService();
+//        var comments = await commentService.FetchCommentsAsync(videoId);
+
+//        var sb = new StringBuilder();
+//        foreach (var comment in comments)
+//        {
+//            sb.AppendLine($"Author: {comment.AuthorDisplayName}, Comment: {comment.TextDisplay}, Likes: {comment.LikeCount}, Published At: {comment.PublishedAt}");
+//        }
+
+//        string responseString = sb.ToString();
+//        byte[] buf = Encoding.UTF8.GetBytes(responseString);
+//        response.ContentLength64 = buf.Length;
+//        response.OutputStream.Write(buf, 0, buf.Length);
+//    }
+//    else
+//    {
+//        string responseString = "Invalid video ID";
+//        byte[] buf = Encoding.UTF8.GetBytes(responseString);
+//        response.ContentLength64 = buf.Length;
+//        response.OutputStream.Write(buf, 0, buf.Length);
+//    }
+
+//    context.Response.OutputStream.Close();
 //}
