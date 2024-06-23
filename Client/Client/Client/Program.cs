@@ -10,7 +10,7 @@
 
             try
             {
-                string[] videoIds = { "sJKitE81lTw", "CCfTPU36AJE", "Z7V8S1O0ovc" };
+                string[] videoIds = {  "CCfTPU36AJE", "sJKitE81lTw", "Z7V8S1O0ovc"};
 
                 var tasks = new Task<string>[videoIds.Length];
                 for (int i = 0; i < videoIds.Length; i++)
