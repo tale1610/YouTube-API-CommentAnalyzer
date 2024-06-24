@@ -1,4 +1,6 @@
-﻿namespace NReco.NLQuery.Tests
+﻿using System.Threading.Tasks;
+
+namespace NReco.NLQuery.Tests
 {
     public class Program
     {
@@ -10,7 +12,7 @@
 
             try
             {
-                string[] videoIds = {  "CCfTPU36AJE", "sJKitE81lTw", "Z7V8S1O0ovc"};
+                string[] videoIds = { "CCfTPU36AJE", "sJKitE81lTw", "Hq3HedEaE8k" };
 
                 var tasks = new Task<string>[videoIds.Length];
                 for (int i = 0; i < videoIds.Length; i++)
@@ -23,6 +25,7 @@
 
                 foreach (var task in tasks)
                 {
+
                     if (task.IsCompletedSuccessfully)
                     {
                         Console.WriteLine($"Odgovor sa servera: {task.Result}");
